@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'core/css/core.css' %}">
+    <title>Home</title>
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <div class="header_line">
+
+            <div class="header_logo">
+                <img src="{% static 'core/img/LOGO.png' %}" alt="">
+            </div>
+
+            <div class="nav">
+                <a class="nav_item" href="#">Главное</a>
+                <a class="nav_item" href="#">Товары</a>
+                <a class="nav_item" href="#">О нас</a>
+                <a class="nav_item" href="#">Отзывы</a>
+                <a class="nav_item" href="cart">
+                    <img src="{% static 'core/img/cart.png' %}" alt="cart">
+                </a>
+            </div>
+
+
+            <div class="btn">
+                {% if auth %}
+                    <a class="button" href="logout">Logout</a>
+                {% else %}
+                    <a class="button" href="login">Login</a>
+                    <a class="button" href="register">Register</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <form method="get">
+            <input type="text" name="query">
+            <button type="submit">search</button>
+        </form>
+
+
+        <ol>
+            {% for good in query %}
+                <!-- <li>{{good.name}}</li> -->
+                <form method='post' action="{% url 'add_good' good.id %}">
+                    {% csrf_token %}
+
+                    <div class="card">
+
+                        <div class="card_image">
+                            <img class="card_img" src="{{ good.img.url }}" alt="photo">
+                        </div>
+
+                        <div class="card_title">
+                            <ul><a class="card_name" href="{% url 'info' good.id %}">{{ good.name }}</a></ul>
+                        </div>
+
+                        <div class="card_desc">
+                            {{good.description}}
+                        </div>
+
+                        <div class="add_in_cart">
+                            <button type="submit">Добавить в корзину</button>
+                        </div>
+                    </div>
+
+                </form>
+            {% endfor %}
+        </ol>
+
+
+    </div>
+    <br>
+
+    <!-- <div class="all">
+        <h1 class="goods_list">Список товаров:</h1>
+        <ol>
+            {% for good in goods %}
+                <form method='post' action="{% url 'add_good' good.id %}">
+                    {% csrf_token %}
+                    <ul><a href="{% url 'info' good.id %}">{{ good.name }}</a></ul>
+                    <button type="submit">Добавить в корзину</button>
+                </form>
+            {% endfor %}
+        </ol>
+    </div>
+ -->
+
+</div>
+
+<div class="cards">
+    <div class="container">
+
+
+
+
+        <div class="cards_holder">
+
+
+
+            <ol>
+                {% for good in goods %}
+                    <form method='post' action="{% url 'add_good' good.id %}">
+                        {% csrf_token %}
+
+                        <div class="card">
+
+                            <div class="card_image">
+                                <img class="card_img" src="{{ good.img.url }}" alt="photo">
+                            </div>
+
+                            <div class="card_title">
+                                <ul><a class="card_name" href="{% url 'info' good.id %}">{{ good.name }}</a></ul>
+                            </div>
+
+                            <div class="card_desc">
+                                {{good.description}}
+                            </div>
+
+                            <div class="add_in_cart">
+                                <button type="submit">Добавить в корзину</button>
+                            </div>
+                        </div>
+
+                    </form>
+                {% endfor %}
+            </ol>
+
+            <!-- <div class="card">
+
+                <div class="card_image">
+                    <img class="card_img" src="{% static 'core/img/photo.png' %}" alt="photo">
+                </div>
+
+                <div class="card_title">
+                    Магическая Атмосфера
+                </div>
+
+                <div class="card_desc">
+                    Стоимость нашей Еды
+                    зависит только от ее
+                    количества. Качество
+                    всегда на высоте!
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card_image">
+                    <img class="card_img" src="{% static 'core/img/photo.png' %}" alt="photo">
+                </div>
+
+                <div class="card_title">
+                    Магическая Атмосфера
+                </div>
+
+                <div class="card_desc">
+                    Стоимость нашей Еды
+                    зависит только от ее
+                    количества. Качество
+                    всегда на высоте!
+                </div>
+
+            </div> -->
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

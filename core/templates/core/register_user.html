@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'core/css/log.css' %}">
+    <title>Register</title>
+</head>
+    <body>
+        <div class="header">
+            <div class="container">
+
+                <div class="header_line">
+
+                    <div class="header_logo">
+                        <img src="{% static 'core/img/LOGO.png' %}" alt="">
+                    </div>
+
+                    <div class="nav">
+                        <a class="nav_item" href="#">Главное</a>
+                        <a class="nav_item" href="#">Товары</a>
+                        <a class="nav_item" href="#">О нас</a>
+                        <a class="nav_item" href="#">Отзывы</a>
+                    </div>
+
+                    <div class="btn">
+                        <a class="button" href="login">Login</a>
+                    </div>
+                </div>
+
+
+
+                <div class="login_panel">
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div>
+                            <label for="first_name">First Name:</label>
+                            <br>
+                            <input type="text" name="first_name">
+                        </div>
+
+                        <div>
+                            <label for="last_name">Last Name:</label>
+                            <br>
+                            <input type="text" name="last_name">
+                        </div>
+
+                        <div>
+                            <label for="username">Username:</label>
+                            <br>
+                            <input type="text" name="username" required>
+                        </div>
+
+
+                        <div>
+                            <label for="email_adress">Email Adress:</label>
+                            <br>
+                            <input type="text" name="email_adress">
+                        </div>
+
+                        <div>
+                            <label for="password">Password</label>
+                            <br>
+                            <input type="password" name="password" required>
+                        </div>
+
+                        <div>
+                            <label for="confirn_pas">Confirn Password:</label>
+                            <br>
+                            <input type="password" name="confirn_pas" required>
+                        </div>
+
+                        <button class="button" type="submit">Register</button>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </body>
+</html>
